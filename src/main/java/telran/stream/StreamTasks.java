@@ -1,27 +1,23 @@
 package telran.stream;
 
 import java.util.Arrays;
-import java.util.Random;
 import java.util.stream.IntStream;
 
 public class StreamTasks {
-
+/*
+// Create a stream of indices
+// Pair indices with random 
+// Sort by random to shuffle indexes
+// Map shuffled indexes back to array values
+ // Collect to array
+*/
     public static int[] shuffle(int[] arr) {
-        return Arrays.stream(getShuffledIndexes(arr))
-                .map(i -> arr[i])
+        return Arrays.stream(IntStream.range(0, arr.length)  
+                .mapToObj(i -> new int[] {i, (int)(Math.random() * 1000)})  
+                .sorted((a, b) -> Integer.compare(a[1], b[1]))  
+                .mapToInt(a -> arr[a[0]])  
+                .toArray()) 
                 .toArray();
-    }
-
-    private static int[] getShuffledIndexes(int[] arr) {
-        Random random = new Random();
-        int[] res = IntStream.range(0, arr.length).toArray();
-
-        for (int i = res.length - 1; i > 0; i--) {
-            int j = random.nextInt(i + 1);
-            int tmp = res[i];
-            res[i] = res[j];
-            res[j] = tmp;
-        }
-        return res;
-    }
+}
+    
 }
