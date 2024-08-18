@@ -1,6 +1,5 @@
 package telran.stream;
 
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class StreamTasks {
@@ -12,11 +11,10 @@ public class StreamTasks {
  // Collect to array
 */
     public static int[] shuffle(int[] arr) {
-        return Arrays.stream(IntStream.range(0, arr.length)  
+        return  IntStream.range(0, arr.length)  
                 .mapToObj(i -> new int[] {i, (int)(Math.random() * 1000)})  
                 .sorted((a, b) -> Integer.compare(a[1], b[1]))  
                 .mapToInt(a -> arr[a[0]])  
-                .toArray()) 
                 .toArray();
 }
     
