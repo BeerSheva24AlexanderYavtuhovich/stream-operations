@@ -9,10 +9,9 @@ public class StreamTasks {
         return Arrays.stream(arr)
                 .map(i -> {
                     int randInd = (int) (Math.random() * (arr.length - index[0]));
-                    int value = arr[randInd];
+                    int temp = arr[randInd];
                     arr[randInd] = arr[arr.length - 1 - index[0]];
-                    arr[arr.length - 1 - index[0]] = value;
-                    return arr[arr.length - 1 - index[0]++];
+                    return arr[arr.length - 1 - index[0]++] = temp;
                 })
                 .toArray();
     }
